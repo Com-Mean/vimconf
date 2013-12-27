@@ -103,6 +103,12 @@ Bundle 'L9'
 " ... 
 " }}
 
+" FencView{{{ 
+" 水木社区的 mbbill 开发的插件使用词频统计的方式识别文件编码
+Bundle 'FencView.vim'
+" let g:fencview_autodetect=1 "默认开启时设置
+" }}}
+
 " SuperTab{
 Bundle 'SuperTab-continued.'
 let g:SuperTabRetainComletionType=2
