@@ -1,4 +1,5 @@
 "http://www.cnblogs.com/ma6174/archive/2011/12/10/2283393.html
+"https://github.com/wklken/k-vim
 runtime! debian.vim
 set nocompatible               " be iMproved(不与vi兼容)
 filetype off                   " required!       /**  从这行开始，vimrc配置 **/
@@ -306,15 +307,11 @@ endfunction
 
 """""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py,*.java exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
     "如果文件类型为.sh文件 
-    if &filetype == 'python'
-        call setline(1,"\#########################################################################") 
-    endif
-
-    if &filetype == 'sh' ||&filetype == 'python'
+    if &filetype == 'sh' && &filetype == 'python'
         call setline(1,"\#########################################################################") 
         call append(line("."), "\# File Name: ".expand("%")) 
         call append(line(".")+1, "\# Author: lpqiu") 
