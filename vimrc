@@ -15,6 +15,8 @@ Bundle 'gmarik/vundle'
 " common conf {{
 syntax enable
 syntax on
+" 支持静态语法检查，风格检查
+Bundles 'scrooloose/syntastic'
 set autoindent
 set backspace=2
 set showmatch
