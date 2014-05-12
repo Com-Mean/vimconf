@@ -1,5 +1,4 @@
 "http://www.cnblogs.com/ma6174/archive/2011/12/10/2283393.html
-"https://github.com/wklken/k-vim
 runtime! debian.vim
 set nocompatible               " be iMproved(不与vi兼容)
 filetype off                   " required!       /**  从这行开始，vimrc配置 **/
@@ -8,7 +7,7 @@ filetype off                   " required!       /**  从这行开始，vimrc配
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 " }
 
@@ -38,18 +37,32 @@ set go=
 set showcmd
 set cmdheight=1
 
-" Chinese 
+" Chinese
 language messages zh_CN.utf-8
-set encoding=euc-cn "utf-8
+set encoding=utf-8 "cp936  euc-cn "utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " set fileencodings=ucs-bom,utf-8,chinese,euc-jp,euc-kr,latin1
 set helplang=cn             "帮助系统设置为中文
 
 " color
-Bundle 'desert.vim'
-" Bundle 'desertEx'
-colo desert
+set t_Co=256
+Bundle 'molokai'
+colo molokai
+"Bundle 'desert-warm-256'
+"colo desert-warm-256
+"Bundle 'desert.vim'
+"Bundle 'desertEx'
+"colo desert
+
+"################### 显示增强 ###################"
+
+"状态栏增强展示
+"Bundle 'Lokaltog/vim-powerline'
+"if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
+"let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'unicode'
+" Bundle 'linepower.vim'
 
 " }}
 
@@ -63,15 +76,15 @@ map! <C-A> <Esc>ggVGY
 map <F10> gg=G
 " 选中状态下 Ctrl+c 复制
 vmap <C-c> "+y
-"去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
-"比较文件  
-nnoremap <C-F2> :vert diffsplit 
-"新建标签  
-map <M-F2> :tabnew<CR>  
-"列出当前目录文件  
-map <F3> :tabnew .<CR>  
-"打开树状文件目录  
+"去空行
+nnoremap <F2> :g/^\s*$/d<CR>
+"比较文件
+nnoremap <C-F2> :vert diffsplit
+"新建标签
+map <M-F2> :tabnew<CR>
+"列出当前目录文件
+map <F3> :tabnew .<CR>
+"打开树状文件目录
 map <C-F3> \be
 " }}
 
@@ -80,11 +93,11 @@ map <C-F3> \be
 " 设置ctags的快捷键为 Ctrl-F12
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " 设置ctags其他tags源
-set tags+=./tags ",../inc/tags,../bxml/tags
+" set tags+=./tags ",../inc/tags,../bxml/tags
 " }
 
 " VundleExample{{
-" My Bundles here:  /* 插件配置格式 */   
+" My Bundles here:  /* 插件配置格式 */
 
 " original repos on github （Github网站上非vim-scripts仓库的插件，按下面格式填写）
 " Bundle 'tpope/vim-fugitive'
@@ -95,16 +108,16 @@ set tags+=./tags ",../inc/tags,../bxml/tags
 " vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
 " 插件的名字必须与repos上定义的一致
 " repos1: https://github.com/vim-scripts
-" repos2: http://vim-scripts.org/vim/scripts.html 
+" repos2: http://vim-scripts.org/vim/scripts.html
 Bundle 'L9'
 " Bundle 'FuzzyFinder'
 
 " non github repos   (非上面两种情况的，按下面格式填写)
 " Bundle 'git://git.wincent.com/command-t.git'
-" ... 
+" ...
 " }}
 
-" FencView{{{ 
+" FencView{{{
 " 水木社区的 mbbill 开发的插件使用词频统计的方式识别文件编码
 Bundle 'FencView.vim'
 " let g:fencview_autodetect=1 "默认开启时设置
@@ -112,7 +125,7 @@ Bundle 'FencView.vim'
 
 " SuperTab{
 Bundle 'SuperTab-continued.'
-let g:SuperTabRetainComletionType=2
+let g:SuperTabRetainComletionType=1
 let g:SuperTabDefaultCompletionType="context"
 "<C-X><C-O>" " context,tab替换"Ctrl+X Ctrl+O"
 " }
@@ -131,17 +144,42 @@ map <F3> :TlistToggle<CR>
 " TagHighlight 支持用户自定义的数据类型名高亮显示
 Bundle 'TagHighlight'
 
-"提供多文件同时编辑功能,操作缓存buffer窗口  
-Bundle 'minibufexplorerpp'           
-let g:miniBufExplMapWindowNavVim = 1 "Ctrl-<hjkl> to move to window   
+" 多余的空格标红
+Bundle 'bronson/vim-trailing-whitespace'
+" to fix the whitespace errors, just call :FixWhitespace.
+
+" folding xml
+" Bundle 'XML-Folding'
+" au BufNewFile, BufRead *.xml,*.htm,*.html so XMLFolding
+
+" for python.vim syntax highlight
+Bundle 'hdima/python-syntax'
+let python_highlight_all = 1
+" https://github.com/wklken/k-vim
+
+"Indent Guides is a plugin for visually displaying indent levels in Vim.
+Bundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+"hi IndentGuidesOdd guibg=red ctermbg=3
+"hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd  ctermbg = black  "darkgrey "black
+hi IndentGuidesEven ctermbg = black " darkgrey
+
+"提供多文件同时编辑功能,操作缓存buffer窗口
+Bundle 'minibufexplorerpp'
+let g:miniBufExplMapWindowNavVim = 1 "Ctrl-<hjkl> to move to window
 let g:miniBufExplTabWrap = 1 " make tabs show complete (no broken on two lines)
 
-" NerdTree use <F2>  
+" NerdTree use <F2>
 Bundle 'The-NERD-tree'
-let NERDTreeWinPos='right'  
+let NERDTreeWinPos='left'
 let NERDTreeWinSize=25
 let NERDTreeChDirMode=1
-map <F2> :NERDTreeToggle<CR>  
+map <F2> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Winmanager{{
@@ -164,7 +202,7 @@ endfunction
 nmap wm :WMToggle<CR>
 " }}
 
-" 对cscope的支持{{ 
+" 对cscope的支持{{
 "暂未启用
 "Bundle 'cscope-quickfix'
 "设定使用 quickfix 窗口来显示 cscope 的查询结果
@@ -187,15 +225,15 @@ nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR> "查找本函数调用的
 " }}
 
 " cpp, python自动补全{{
-Bundle 'OmniCppComplete'
+" Bundle 'OmniCppComplete'
 "need cscope support
-" 关闭omnicppcomplete预览窗口 
-set completeopt=menu
+" 关闭omnicppcomplete预览窗口
+" set completeopt=menu
 
 " python
-Bundle 'pythoncomplete'
+" Bundle 'pythoncomplete'
 Bundle 'kevinw/pyflakes-vim'
-Bundle 'python.vim'
+" Bundle 'python.vim'
 " }}
 
 " Doxygen{{ use <fa> <fg> <fb> <fo>快速注释
@@ -215,138 +253,149 @@ let g:doxygen_enhanced_color=1
 "文档注释
 map fa :DoxAuthor<cr>
 " 函数注释
-map fg :Dox<cr>  
-map fb :DoxBlock<cr> " 
+map fg :Dox<cr>
+map fb :DoxBlock<cr> "
 map fl :DoxLic<cr>
 "单行注释
 map fo O/** **/<Left><Left>
 " }}
 
-" TagBar,暂未使用,可用于替代taglist，功能更强
+" TagBar{{{
+" 暂未使用,可用于替代taglist，功能更强
 " Bundle 'Tagbar' "提供源代码符号的结构化视图,这个插件需要tags文件的支持
-" Bundle 'majutsushi/tagbar'
-" nmap <F4> :TagbarToggle<CR>   "设置快捷键,按下<strong>F4</strong>即可显示列表  
-" let g:tagbar_autofocus = 1    
-" let g:tagbar_width = 30       "设置宽度，默认为30  
-" autocmd VimEnter * nested :call tagbar#autoopen(1)    "打开vim时自动打开tagbar  
-" let g:tagbar_left = 1         "在左侧  
-" let g:tagbar_right = 1        "在右侧  
+Bundle 'majutsushi/tagbar'
+nmap <F4> :TagbarToggle<CR>   "设置快捷键,按下<strong>F4</strong>即可显示列表
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 30       "设置宽度，默认为30
+" autocmd VimEnter * nested :call tagbar#autoopen(1)    "打开vim时自动打开tagbar
+let g:tagbar_left = 1         "在左侧
+" let g:tagbar_right = 1        "在右侧
+" }}}
 
-" Bundle 'SuperTab'
-" Bundle 'SuperTab'
-" Bundle 'SuperTab'
+" YouCompleteMe{{{
+" 最好的智能补全
+ Bundle 'Valloric/YouCompleteMe'
+ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+ let g:ycm_collect_identifiers_from_tags_files = 1
+ let g:ycm_seed_identifiers_with_syntax = 1
+ let g:ycm_confirm_extra_conf = 0
+ let g:ycm_filetype_whitelist = {'*': 1}
+" }}}
+
 filetype plugin indent on     " required!   /** vimrc文件配置结束 **/
 "                                           /** vundle命令 **/
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo 
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"   
-" see :h vundle for more details or wiki for FAQ 
+"
+" see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
-"检查ctags,cscope是否安装并设置到环境变量中 
-"生成最新的cscope.out使omnicppcomplete能起效 
-"check if ctags&cscope installed and added into path 
-function Do_CsTag() 
-    let dir = getcwd() 
-    if filereadable("tags") 
-        if(g:iswindows==1) 
-            let tagsdeleted=delete(dir."\\"."tags") 
-        else 
-            let tagsdeleted=delete("./"."tags") 
-        endif 
-        if(tagsdeleted!=0) 
-            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None 
-            return 
-        endif 
-    endif 
-    if has("cscope") 
-        silent! execute "cs kill -1" 
-    endif 
-    if filereadable("cscope.files") 
-        if(g:iswindows==1) 
-            let csfilesdeleted=delete(dir."\\"."cscope.files") 
-        else 
-            let csfilesdeleted=delete("./"."cscope.files") 
-        endif 
-        if(csfilesdeleted!=0) 
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None 
-            return 
-        endif 
-    endif 
-    if filereadable("cscope.out") 
-        if(g:iswindows==1) 
-            let csoutdeleted=delete(dir."\\"."cscope.out") 
-        else 
-            let csoutdeleted=delete("./"."cscope.out") 
-        endif 
-        if(csoutdeleted!=0) 
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None 
-            return 
-        endif 
-    endif 
-    if(executable('ctags')) 
-        "silent! execute "!ctags -R --c-types=+p --fields=+S *" 
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ." 
-    endif 
-    if(executable('cscope') && has("cscope") ) 
-        if(g:iswindows!=1) 
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files" 
-        else 
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files" 
-        endif 
-        silent! execute "!cscope -b" 
-        execute "normal :" 
-        if filereadable("cscope.out") 
-            execute "cs add cscope.out" 
-        endif 
-    endif 
-endfunction 
+"检查ctags,cscope是否安装并设置到环境变量中
+"生成最新的cscope.out使omnicppcomplete能起效
+"check if ctags&cscope installed and added into path
+function Do_CsTag()
+    let dir = getcwd()
+    if filereadable("tags")
+        if(g:iswindows==1)
+            let tagsdeleted=delete(dir."\\"."tags")
+        else
+            let tagsdeleted=delete("./"."tags")
+        endif
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        if(g:iswindows==1)
+            let csfilesdeleted=delete(dir."\\"."cscope.files")
+        else
+            let csfilesdeleted=delete("./"."cscope.files")
+        endif
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        if(g:iswindows==1)
+            let csoutdeleted=delete(dir."\\"."cscope.out")
+        else
+            let csoutdeleted=delete("./"."cscope.out")
+        endif
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+    endif
+    if(executable('cscope') && has("cscope") )
+        if(g:iswindows!=1)
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        else
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+        endif
+        silent! execute "!cscope -b"
+        execute "normal :"
+        if filereadable("cscope.out")
+            execute "cs add cscope.out"
+        endif
+    endif
+endfunction
 
 """""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py,*.java exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' && &filetype == 'python'
-        call setline(1,"\#########################################################################") 
-        call append(line("."), "\# File Name: ".expand("%")) 
-        call append(line(".")+1, "\# Author: lpqiu") 
-        call append(line(".")+2, "\# mail: qlp_1018@126.com") 
-        call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-        call append(line(".")+4, "\#########################################################################") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.py,*.java exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh' || &filetype == 'python'
         if &filetype == 'sh'
-            call append(line(".")+5, "\#!/bin/bash") 
-            call append(line(".")+6, "") 
+            call setline(1, "\#!/usr/bin/env bash")
+            call append(line("."), "")
         else
-            call append(line(".")+5, "\#!/usr/bin/python")
-            call append(line(".")+6, "\# -*- coding: utf-8 -*-") 
-            call append(line(".")+7, "")
-        endif 
-    else 
-        call setline(1, "/*************************************************************************") 
-        call append(line("."), "    > File Name: ".expand("%")) 
-        call append(line(".")+1, "    > Author: lpqiu") 
-        call append(line(".")+2, "    > Mail: lpqiu_1018@126.com ") 
-        call append(line(".")+3, "    > Created Time: ".strftime("%c")) 
-        call append(line(".")+4, " ************************************************************************/") 
+            call setline(1, "\#!/usr/bin/env python")
+            call append(line("."), "\# -*- coding: utf-8 -*-")
+        endif
+        call append(line(".")+1,"\#########################################################################")
+        call append(line(".")+2, "\# File Name: ".expand("%"))
+        call append(line(".")+3, "\# Author: lpqiu")
+        call append(line(".")+4, "\# mail: qlp_1018@126.com")
+        call append(line(".")+5, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+6, "\#########################################################################")
+        call append(line(".")+7, "")
+    else
+        call setline(1, "/*************************************************************************")
+        call append(line("."), "    > File Name: ".expand("%"))
+        call append(line(".")+1, "    > Author: lpqiu")
+        call append(line(".")+2, "    > Mail: lpqiu_1018@126.com ")
+        call append(line(".")+3, "    > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
         call append(line(".")+5, "")
     endif
+
     if &filetype == 'cpp'
-        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+6, "#include <iostream>")
         call append(line(".")+7, "using namespace std;")
         call append(line(".")+8, "")
     endif
+
     if &filetype == 'c'
-        call append(line(".")+6, "#include<stdio.h>")
+        call append(line(".")+6, "#include <stdio.h>")
         call append(line(".")+7, "")
     endif
     "新建文件后，自动定位到文件末尾
     autocmd BufNewFile * normal G
-endfunc 
+endfunc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " C，C++ 按F5编译运行
 " map <F5> :call CompileRunGcc()<CR>
@@ -358,8 +407,8 @@ func! CompileRunGcc()
     elseif &filetype == 'cpp'
         exec "!g++ -Wall % -o %<"
         exec "! ./%<"
-    elseif &filetype == 'java' 
-        exec "!javac %" 
+    elseif &filetype == 'java'
+        exec "!javac %"
         exec "!java %<"
     elseif &filetype == 'sh'
         :!./%
